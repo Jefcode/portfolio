@@ -12,9 +12,9 @@ export default class Preloader extends EventEmitter {
 		this.sizes = this.experience.sizes;
 
 		// DOM Elements neded
-		this.preloader = document.querySelector('.preloader');
-		this.preloaderContent = document.querySelector('.preloader-content');
-		this.progressBarElement = document.querySelector('.progress-bar');
+		this.preloader = document.getElementById('preloader');
+		this.preloaderContent = document.getElementById('preloader-content');
+		this.progressBarElement = document.getElementById('progress-bar');
 		this.percentageElement = document.getElementById('percentage');
 
 		this.heroTitleContainer = document.querySelector('.hero-title-container');
