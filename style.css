@@ -1,5 +1,6 @@
 /* Fonts --------------------------------------------- */
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -8,19 +9,19 @@
 @layer {
 	@font-face {
 		font-family: sahel;
-		src: url(../static/fonts/sahel.ttf);
+		src: url(/fonts/sahel.ttf);
 		font-weight: 400;
 	}
 
 	@font-face {
 		font-family: sahel;
-		src: url(../static/fonts/sahel-bold.ttf);
+		src: url(/fonts/sahel-bold.ttf);
 		font-weight: 600;
 	}
 
 	@font-face {
 		font-family: sahel;
-		src: url(../static/fonts/sahel-black.ttf);
+		src: url(/fonts/sahel-black.ttf);
 		font-weight: 800;
 	}
 
