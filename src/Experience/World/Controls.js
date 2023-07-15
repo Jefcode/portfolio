@@ -98,9 +98,6 @@ export default class Controls {
 				},
 				{
 					x: () => this.sizes.width * -0.000675,
-					onComplete: () => {
-						console.log(this.room);
-					},
 				}
 			);
 
@@ -210,7 +207,6 @@ export default class Controls {
 		 */
 		this.room.position.set(0, 0, 0);
 		this.room.scale.set(0.05, 0.05, 0.05);
-		console.log(this.room.scale);
 
 		// First move of the scene
 		this.firstMoveTimelineMobile = gsap
@@ -224,16 +220,6 @@ export default class Controls {
 					invalidateOnRefresh: true,
 				},
 			})
-			.fromTo(
-				this.roomObj.bakedMaterial.uniforms.uMixNatural,
-				{
-					value: 0,
-				},
-				{
-					value: 0,
-				},
-				'same'
-			)
 			.fromTo(
 				this.room.position,
 				{
@@ -285,11 +271,8 @@ export default class Controls {
 				},
 				'z'
 			)
-			.fromTo(
+			.to(
 				this.room.position,
-				{
-					x: 0,
-				},
 				{
 					x: () => this.sizes.width * -0.002,
 				},
@@ -358,60 +341,64 @@ export default class Controls {
 	}
 
 	setScrollTrigger() {
-		const mm = gsap.matchMedia();
+		ScrollTrigger.matchMedia({
+			// Desktop
+			'(min-width: 969px)': () => {
+				this.desktop();
+			},
 
-		mm.add('(min-width: 969px)', () => {
-			this.desktop();
-		});
+			// Mobile
+			'(max-width: 968px)': () => {
+				this.mobile();
+			},
 
-		mm.add('(max-width: 968px)', () => {
-			this.mobile();
-		});
-
-		/**
-		 * Section animation on scroll
-		 */
-		this.sections = document.querySelectorAll('.section');
-		this.sections.forEach((section) => {
-			if (section.classList.contains('right')) {
-				gsap.to(section, {
-					borderTopLeftRadius: 0,
-					scrollTrigger: {
-						trigger: section,
-						start: 'top bottom',
-						end: 'top top',
-						scrub: 0.6,
-					},
+			all: () => {
+				/**
+				 * Section animation on scroll
+				 */
+				this.sections = document.querySelectorAll('.section');
+				this.sections.forEach((section) => {
+					if (section.classList.contains('right')) {
+						gsap.to(section, {
+							borderTopLeftRadius: 0,
+							scrollTrigger: {
+								trigger: section,
+								start: 'top bottom',
+								end: 'top top',
+								scrub: 0.6,
+							},
+						});
+						gsap.to(section, {
+							borderBottomLeftRadius: 700,
+							scrollTrigger: {
+								trigger: section,
+								start: 'bottom bottom',
+								end: 'bottom top',
+								scrub: 0.6,
+							},
+						});
+					} else if (section.classList.contains('left')) {
+						gsap.to(section, {
+							borderTopRightRadius: 0,
+							scrollTrigger: {
+								trigger: section,
+								start: 'top bottom',
+								end: 'top top',
+								scrub: 0.6,
+							},
+						});
+						gsap.to(section, {
+							borderBottomRightRadius: 700,
+							scrollTrigger: {
+								trigger: section,
+								start: 'bottom bottom',
+								end: 'bottom top',
+								scrub: 0.6,
+							},
+						});
+					}
 				});
-				gsap.to(section, {
-					borderBottomLeftRadius: 700,
-					scrollTrigger: {
-						trigger: section,
-						start: 'bottom bottom',
-						end: 'bottom top',
-						scrub: 0.6,
-					},
-				});
-			} else if (section.classList.contains('left')) {
-				gsap.to(section, {
-					borderTopRightRadius: 0,
-					scrollTrigger: {
-						trigger: section,
-						start: 'top bottom',
-						end: 'top top',
-						scrub: 0.6,
-					},
-				});
-				gsap.to(section, {
-					borderBottomRightRadius: 700,
-					scrollTrigger: {
-						trigger: section,
-						start: 'bottom bottom',
-						end: 'bottom top',
-						scrub: 0.6,
-					},
-				});
-			}
+			},
 		});
 	}
 
