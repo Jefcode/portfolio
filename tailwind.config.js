@@ -1,17 +1,17 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-	content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
-	theme: {
-		extend: {
-			fontFamily: {
-				sans: ['sahel', 'Inconsolata'],
-				english: ['Inconsolata'],
-				mont: ['Montserrat'],
-			},
-			colors: {
-				gray: '#262b29',
-			},
-		},
-	},
-	plugins: [],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ['Montserrat', 'Inconsolata'],
+        code: ['Inconsolata'],
+        mont: ['Montserrat'],
+      },
+      colors: {
+        gray: '#262b29',
+      },
+    },
+  },
+  plugins: [],
 };
